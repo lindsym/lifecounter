@@ -11,7 +11,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="lifeCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1032" height="1376"/>
@@ -24,15 +23,6 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Add Players"/>
                                 <connections>
                                     <action selector="changeNumPlayers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a6w-EG-K7B"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHd-Un-ITI">
-                                <rect key="frame" x="555" y="80" width="79" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="History"/>
-                                <connections>
-                                    <action selector="historyRequested:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qNn-4G-7zz"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ebd-n2-bop">
@@ -48,6 +38,24 @@
                                     <action selector="changeNumPlayers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9mQ-15-yZ0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTO-qE-WLg">
+                                <rect key="frame" x="404" y="79" width="117" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Reset Game"/>
+                                <connections>
+                                    <action selector="resetGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="38v-jF-l9j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHd-Un-ITI">
+                                <rect key="frame" x="559" y="78" width="79" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="History"/>
+                                <connections>
+                                    <action selector="historyRequested:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qNn-4G-7zz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -56,10 +64,12 @@
                         <outlet property="addPlayers" destination="dgZ-dy-but" id="8Au-lu-4x9"/>
                         <outlet property="history" destination="BHd-Un-ITI" id="jdC-Qr-vCj"/>
                         <outlet property="removePlayers" destination="pgb-Rh-UbX" id="Xvg-TR-RLb"/>
+                        <outlet property="resetButton" destination="GTO-qE-WLg" id="u02-m6-sU2"/>
                         <outlet property="vertStack" destination="ebd-n2-bop" id="1Rf-tL-qAb"/>
                         <segue destination="vC8-t9-ZSw" kind="show" identifier="goToNext" id="H8X-gW-YQl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="45.930232558139537" y="-2.6162790697674416"/>
         </scene>

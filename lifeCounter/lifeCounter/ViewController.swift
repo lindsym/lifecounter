@@ -83,6 +83,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var vertStack: UIStackView!
     
+    @IBOutlet weak var resetButton: UIButton!
+    
 
     @IBAction func changeNumPlayers (_ sender: UIButton) {
         if(sender == addPlayers) {
@@ -130,7 +132,7 @@ class ViewController: UIViewController {
         
         if let change = Int(allPlayers[temp].lifeChange.text ?? "0"), change != 0 {
             var addHistory = UILabel()
-            addHistory.text = "\(allPlayers[temp].name) lost \(change) life"
+            addHistory.text = "\(allPlayers[temp].name) gained \(change) life"
             allHistory.append(addHistory)
         }
     }
@@ -153,6 +155,101 @@ class ViewController: UIViewController {
             addHistory.text = "\(allPlayers[temp].name) lost \(change) life"
             allHistory.append(addHistory)
         }
+        
+        checkLoses()
+    }
+    
+    func checkLoses () {
+        var losers = 0
+        for index in 0 ... allPlayers.count - 1 {
+            if (allPlayers[index].lost.isHidden != true) {
+                losers += 1
+            }
+        }
+        
+        if (losers == allPlayers.count - 1) {
+            endGame()
+        }
+        
+    }
+    
+    func endGame () {
+        let alert = UIAlertController(title: "Game over!", message: "Game over!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .default,
+                                          handler: { [self]_ in 
+                resetGameViaAlert()
+            }))
+
+            self.present(alert, animated: true, completion: {
+              NSLog("The completion handler fired")
+            })
+    }
+    
+    func resetGameViaAlert () {
+        let timesToDelete = allPlayers.count - 1
+
+        if (4 <= timesToDelete) {
+            for index in 4 ... timesToDelete {
+                vertStack.removeArrangedSubview(allPlayers[index].horizontalStack)
+                allPlayers[index].horizontalStack.removeFromSuperview()
+            }
+        }
+        
+        allPlayers.removeAll()
+        vertStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        
+        playerNum = 4
+        
+        setUpPlayer(p1)
+        setUpPlayer(p2)
+        setUpPlayer(p3)
+        setUpPlayer(p4)
+
+        for index in 0 ... allPlayers.count - 1 {
+            allPlayers[index].lifeCount = 20
+            allPlayers[index].lifeCountLabel.text = "20"
+            allPlayers[index].lost.isHidden = true
+            allPlayers[index].lifeChange.text = ""
+        }
+
+        addPlayers.isHidden = false
+        removePlayers.isHidden = false
+        allHistory = []
+    }
+    
+    @IBAction func resetGame (_ sender: UIButton){
+        let timesToDelete = allPlayers.count - 1
+
+        if (4 <= timesToDelete) {
+            for index in 4 ... timesToDelete {
+                vertStack.removeArrangedSubview(allPlayers[index].horizontalStack)
+                allPlayers[index].horizontalStack.removeFromSuperview()
+            }
+        }
+        
+        allPlayers.removeAll()
+        vertStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        
+        playerNum = 4
+        
+        setUpPlayer(p1)
+        setUpPlayer(p2)
+        setUpPlayer(p3)
+        setUpPlayer(p4)
+
+        for index in 0 ... allPlayers.count - 1 {
+            allPlayers[index].lifeCount = 20
+            allPlayers[index].lifeCountLabel.text = "20"
+            allPlayers[index].lost.isHidden = true
+            allPlayers[index].lifeChange.text = ""
+        }
+
+        addPlayers.isHidden = false
+        removePlayers.isHidden = false
+        allHistory = []
     }
     
     @IBAction func historyRequested (_ sender: UIButton) {
